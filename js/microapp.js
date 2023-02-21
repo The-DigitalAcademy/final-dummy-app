@@ -125,7 +125,7 @@ function startPayment() {
     Ayoba.startPayment(pm, amount, currency, description);
 }
 function onPaymentStatusChanged(transactionId, status, error) {
-    let res = `Transaction ID:  ${transactionId}  Status:  ${status}  “ Error: “ ${error} `;
+    let res = `Transaction ID:  ${transactionId}  Status:  ${status} Error: ${error} `;
      document.getElementById("txtPaymentStatusChanged").textContent = res;
     txtPaymentStatusChanged.text = res;
 }
