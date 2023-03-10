@@ -1,9 +1,9 @@
-var Ayoba = getAyoba();
+var Ayoba = getAyoba()
 
 /**
- * Determine the mobile operating system and returns the
- * proper javascript interface
- */
+* Determine the mobile operating system and returns the
+* proper javascript interface
+*/
 function getAyoba() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
@@ -26,50 +26,61 @@ function getAyoba() {
 
 console.log(Ayoba);
 
-if (Ayoba == null || Ayoba == "unknown") {
-    document.getElementById("myspan").innerText = "Browser";
+if (Ayoba == null || Ayoba == 'unknown') {
+    document.getElementById('myspan').innerText = "Browser"
 } else {
-    document.getElementById("myspan").innerText = "Ayoba";
+    document.getElementById('myspan').innerText = "Ayoba"
 }
 
 // MSISDN
-var msisdn = Ayoba.getMsisdn();
-if (msisdn) {
-    document.getElementById("msisdn").value = msisdn;
-    document.getElementById("msisdn").classList.add("is-valid");
-} else {
-    document.getElementById("msisdn").classList.add("is-invalid");
+function getMsisdn() {
+    var msisdn = Ayoba.getMsisdn();
+    if (msisdn) {
+        document.getElementById("msisdn").value = msisdn
+        document.getElementById("msisdn").classList.add("is-valid")
+    } else {
+        document.getElementById("msisdn").classList.add("is-invalid")
+    }
 }
 
 // COUNTRY
-var countryCode = Ayoba.getCountry();
-document.getElementById("country").value = countryCode;
+function getCountry() {
+    var countryCode = Ayoba.getCountry();
+    document.getElementById("country").value = countryCode
+}
 
 // CONTACTS
-var contacts = Ayoba.getContacts();
-document.getElementById("contacts").value = contacts;
+function getContacts() {
+    var contacts = Ayoba.getContacts();
+    document.getElementById("contacts").value = contacts
+}
 
 // ALL CONTACTS
-var allContacts = Ayoba.getAllContacts();
-document.getElementById("allContacts").value = allContacts;
+function getAllContacts() {
+    var allContacts = Ayoba.getAllContacts();
+    document.getElementById("allContacts").value = allContacts
+}
+
 
 // LANGUAGE
-
-var lang = Ayoba.getLanguage();
-document.getElementById("lang").value = lang;
+function getLanguage() {
+    var lang = Ayoba.getLanguage();
+    document.getElementById("lang").value = lang
+}
 
 // ============================================================= FUNCTIONS ============================================================================
 
+
 function onNicknameChanged(nickname) {
-    document.getElementById("name").value = nickname;
+    document.getElementById("name").value = nickname
     document.getElementById("name").classList.remove("is-invalid");
-    document.getElementById("name").classList.add("is-valid");
+    document.getElementById("name").classList.add("is-valid")
 }
 
 function onPresenceChanged(presence) {
-    document.getElementById("presence").value = presence;
+    document.getElementById("presence").value = presence
     document.getElementById("presence").classList.remove("is-invalid");
-    document.getElementById("presence").classList.add("is-valid");
+    document.getElementById("presence").classList.add("is-valid")
 }
 
 function onAvatarChanged(avatar) {
@@ -77,12 +88,12 @@ function onAvatarChanged(avatar) {
 }
 
 function onLocationChanged(lat, lon) {
-    document.getElementById("lat").value = lat;
-    document.getElementById("lon").value = lon;
+    document.getElementById("lat").value = lat
+    document.getElementById("lon").value = lon
     document.getElementById("lat").classList.remove("is-invalid");
-    document.getElementById("lat").classList.add("is-valid");
+    document.getElementById("lat").classList.add("is-valid")
     document.getElementById("lon").classList.remove("is-invalid");
-    document.getElementById("lon").classList.add("is-valid");
+    document.getElementById("lon").classList.add("is-valid")
 }
 
 function getFile() {
@@ -92,18 +103,21 @@ function getFile() {
 }
 
 function takephoto() {
+
     Ayoba.takePicture();
+
 }
 
 function onPictureRetrievedResponse(responseCode, picturePath) {
-    var responseCode = responseCode;
-    var picturePath = picturePath;
+    var responseCode = responseCode
+    var picturePath = picturePath
 
     console.log(picturePath);
 }
 
-function sendGenericEvent(event) {
-    Ayoba.sendGenericEvent(event);
+function sendGenericEvent() {
+    var evtNumber = parseInt(document.getElementById('evtNumber').value);
+    Ayoba.sendGenericEvent(evtNumber);
 }
 
 function startConversation() {
@@ -111,22 +125,23 @@ function startConversation() {
 }
 
 function finish() {
-    Ayoba.finish();
+    Ayoba.finish()
 }
 
 function startPayment() {
-    var pm = document.getElementById("pm").value;
-    var currency = document.getElementById("currency").value;
-    var amount = parseInt(document.getElementById("amount").value);
-    var description = document.getElementById("description").value;
+    var pm = document.getElementById('pm').value;
+    var currency = document.getElementById('currency').value;
+    var amount = parseInt(document.getElementById('amount').value);
+    var description = document.getElementById('description').value;
 
     console.log(pm, amount, currency, description);
 
     Ayoba.startPayment(pm, amount, currency, description);
 }
+
 function onPaymentStatusChanged(transactionId, status, error) {
-    let res = `Transaction ID:  ${transactionId}  Status:  ${status} Error: ${error} `;
-     document.getElementById("txtPaymentStatusChanged").textContent = res;
+    let res = `Transaction ID:  ${transactionId} <br></br> Status:  ${status} <br></br> Error: ${error} `;
+    document.getElementById("txtPaymentStatusChanged").textContent = res;
     txtPaymentStatusChanged.text = res;
 }
 
@@ -136,14 +151,9 @@ function submit() {
 
     formData.append("files", photo);
 
-    fetch("https://devstrapi.thedigitalacademy.co.za/api/upload", {
-        method: "POST",
-        body: formData,
-    })
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+    fetch('https://devstrapi.thedigitalacademy.co.za/api/upload', { method: "POST", body: formData }).then((res) => {
+        console.log(res);
+    }).catch((err) => {
+        console.log(err);
+    });
 }
