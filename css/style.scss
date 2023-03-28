@@ -1,0 +1,56 @@
+$primary1 : #0067A3;
+$primary2 : #1261A2;
+$primary3 : #003D66;
+$nunito : 'Nunito', sans-serif;
+$quicksand: 'Quicksand', sans-serif;
+
+.small-1 {
+    font-size: .65em;
+}
+.small-2 {
+    font-size: .5em;
+}
+.text-primary-3 {
+    color: #003D66;
+}
+.text-primary-2 {
+    color: #1261A2;
+}
+.text-primary {
+    color: $primary1 !important;
+}
+.btn {
+    font-family: $nunito !important;
+    font-weight: 800 !important;
+}
+.btn-secondary {
+    background: rgba(193, 193, 193, 0.3);
+    color: #2A2F45;
+    border: none;
+}
+.btn-primary {
+    border-color: $primary2 ;
+    background-color: $primary2!important;
+}
+.btn-outline-primary {
+    border-color: $primary2 ;
+    color: $primary2;
+}
+.btn-outline-primary:hover {
+    background-color: $primary2;
+    border-color: $primary2;
+}
+.btn-outline-primary:active {
+    background-color: $primary2!important;
+    border-color: $primary2 !important;
+}
+
+.ff-nunito {
+    font-family: $nunito !important;
+}
+.ff-quicksand {
+    font-family: $quicksand !important;
+}
+.border-dotted {
+    border-style: dotted !important;
+}
