@@ -21,7 +21,7 @@ $quicksand: 'Quicksand', sans-serif;
 }
 .btn {
     font-family: $nunito !important;
-    font-weight: 800 !important;
+    font-weight: 800;
 }
 .btn-secondary {
     background: rgba(193, 193, 193, 0.3);
@@ -43,6 +43,10 @@ $quicksand: 'Quicksand', sans-serif;
 .btn-outline-primary:active {
     background-color: $primary2!important;
     border-color: $primary2 !important;
+}
+.form-check-input:checked {
+    background-color: $primary2 ;
+    border-color: $primary2 ;
 }
 
 .ff-nunito {

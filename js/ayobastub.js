@@ -45,8 +45,12 @@ class AyobaStub {
     }
 
     getContacts() {
-        var jsonContacts = "27833241313";
-        return jsonContacts;
+        var jsonContacts = [{name: 'jack', phoneNumber: '0946576342'}, {name: 'suzzy', phoneNumber: '0356475834'}];
+        return JSON.stringify(jsonContacts)
+    }
+    getAllContacts() {
+        var jsonContacts = [{name: 'jack', phoneNumber: '0946576342'}, {name: 'suzzy', phoneNumber: '0356475834'}, {name: 'peter', phoneNumber: '0553479574'}];
+        return JSON.stringify(jsonContacts)
     }
 
     getMsisdn() {
@@ -62,6 +66,10 @@ class AyobaStub {
     getLanguage() {
         var language = "en";
         return language;
+    }
+    sendGenericEvent(eventNumber, description) {
+        console.log('eventNumber', eventNumber);
+        console.log('description', description);
     }
 
     getSelfJid() {
@@ -80,24 +88,12 @@ class AyobaStub {
         );
     }
 
-    triggerPresenceChanged() {
-        onPresenceChanged("test presence");
-    }
-
-    triggerMediaSentResponse() {
-        onMediaSentResponse(1);
-    }
-
-    triggerLocationSentResponse() {
-        onLocationSentResponse(1);
-    }
-
     triggerNicknameChanged() {
         onNicknameChanged("test nickname");
     }
-    //Start payment
-    triggerStartPayment() {
-        startPayment("Ozow", 1, "ZAR", "Payment of 1 ZAR via Ozow");
+    startPayment(method, amount, currency, description) {
+        console.log(method, amount, currency, description);
+        this.triggerOnPaymentStatusChanged()
     }
     // Payment status changed
     triggerOnPaymentStatusChanged() {
