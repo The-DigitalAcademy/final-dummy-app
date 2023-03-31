@@ -23,6 +23,7 @@
                 <img src="/assets/images/Ayoba.png" alt="Logo" width="30" height="30" />
                 DA Dummy Application
             </a>
+            <button class="btn btn-primary small-1 float-end" onclick="closeApp()">close</button>
         </div>
         <nav class="text-center mt-4 mb-3 container">
             <i class="bi bi-chevron-left" onclick="decrementNavFocus()"></i>
@@ -34,7 +35,7 @@
     <main class="container">
         <!-- MSISDN -->
         <section data-page="msisdn">
-            <div class="d-flex text-secondary small-2 justify-content-evenly">
+            <div class="d-flex text-secondary small-1 justify-content-evenly">
                 <p>Ayoba Contacts</p>
                 <p>All Contacts</p>
                 <p>Get MSISDN</p>
@@ -44,7 +45,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Ayoba Contacts</label>
                 <p class="mb-2 small-1">Gets user's ayoba registered contacts</p>
                 <select id="value-contacts" class='form-select mb-1' aria-label="Default select example"></select>
-                <button onclick="getContacts('value-contacts')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getContacts('value-contacts')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get Ayoba Contacts
                 </button>
             </div>
@@ -52,7 +53,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">All Contacts</label>
                 <p class="mb-2 small-1">Gets all user's contacts</p>
                 <select id="value-allContacts" class='form-select mb-1' aria-label="Default select example"></select>
-                <button onclick="getAllContacts('value-allContacts')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getAllContacts('value-allContacts')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get all Contacts
                 </button>
             </div>
@@ -60,7 +61,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">MSISDN</label>
                 <p class="mb-2 small-1">Gets the user's msisdn</p>
                 <input type="text" class='form-control form-control-sm mb-2' id="input-msisdn" />
-                <button onclick="getMsisdn('input-msisdn')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getMsisdn('input-msisdn')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get MSISDN
                 </button>
             </div>
@@ -68,22 +69,22 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Self JID</label>
                 <p class="mb-2 small-1">Gets the self JID</p>
                 <input type="text" class='form-control form-control-sm mb-2' id="input-jid" />
-                <button onclick="getSelfJid('input-jid')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getSelfJid('input-jid')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get Self JID
                 </button>
             </div>
         </section>
         <!-- LOCATION -->
         <section data-page="location">
-            <div class="d-flex small-2 text-secondary justify-content-evenly">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
                 <p>Country Code</p>
                 <p>GSP Co-ordinates</p>
             </div>
             <div class="mb-4">
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Country Code</label>
                 <p class="mb-2 small-1">Gets user's country code</p>
-                <input type="text" class='form-control form-control-sm mb-2' id="input-country'" />
-                <button onclick='getCountry("input-country")' class="btn btn-sm btn-outline-primary w-100 small-2">
+                <input type="text" class='form-control form-control-sm mb-2' id="input-country" />
+                <button onclick='getCountry("input-country")' class="btn btn-sm btn-outline-primary w-100 sm">
                     Get Country Code
                 </button>
             </div>
@@ -98,14 +99,14 @@
                     <span class="text-muted small-1">Longitudes:</span>
                     <input type="text" id="input-lon" class="border-0">
                 </div>
-                <button onclick="showGpsLocation()" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="showGpsLocation()" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get GPS Co-ordinates
                 </button>
             </div>
         </section>
         <!-- PAYMENTS -->
         <section data-page="payments">
-            <div class="d-flex small-2 text-secondary justify-content-evenly">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
                 <p>Payments</p>
             </div>
             <div class="mb-4">
@@ -117,11 +118,11 @@
                     <label class="form-check-label text-muted small-1 mt-1" for="flexSwitchCheckDefault">Overlay</label>
                 </div>
                 <input id="pay-method" type="text" placeholder="Method" class='form-control form-control-sm mb-2 ps-3' />
-                <input id="pay-amount" type="number" placeholder="Amout" class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-amount" type="number" placeholder="Amount" class='form-control form-control-sm mb-2 ps-3' />
                 <input id="pay-currency" type="text" placeholder="Currency" class='form-control form-control-sm mb-2 ps-3' />
                 <textarea id="pay-descr" type="text" placeholder="Descrition"
                     class='form-control form-control-sm mb-2 ps-3'></textarea>
-                <button onclick="startPayment('pay-method', 'pay-amount', 'pay-currency', 'pay-descr')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="startPayment('pay-method', 'pay-amount', 'pay-currency', 'pay-descr')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Start Payment
                 </button>
             </div>
@@ -140,7 +141,7 @@
         </section>
         <!-- PROFILE -->
         <section data-page="profile">
-            <div class="d-flex small-2 text-secondary justify-content-evenly">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
                 <p>Avatar</p>
                 <p>Username</p>
                 <p>Language Code</p>
@@ -150,7 +151,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Avatar</label>
                 <p class="mb-2 small-1">Gets user's avatar</p>
                 <img type="text" width="150" className="m-3 rounded-circle" id="input-avatar" alt="avatar" />
-                <button onclick="getAvatar('input-avatar')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getAvatar('input-avatar')" class="btn btn-sm btn-outline-primary w-100 sm">
                     get user Avatar
                 </button>
             </div>
@@ -158,7 +159,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Username</label>
                 <p class="mb-2 small-1">Gets username</p>
                 <input type="text" class='form-control form-control-sm mb-2' id="input-username" />
-                <button onclick="getUsername('input-username')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getUsername('input-username')" class="btn btn-sm btn-outline-primary w-100 sm">
                     get username
                 </button>
             </div>
@@ -166,22 +167,22 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Language Code</label>
                 <p class="mb-2 small-1">Gets user's language code</p>
                 <input type="text" class='form-control form-control-sm mb-2' id="input-lang" />
-                <button onclick="getLanguage('input-lang')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="getLanguage('input-lang')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get language code
                 </button>
             </div>
             <div class="mb-4">
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Live Presence</label>
                 <p class="mb-2 small-1">Gets user's live presence. 1 = present , 0 = not present</p>
-                <input type="text" class='form-control form-control-sm mb-2' id="number" />
-                <button class="btn btn-sm btn-outline-primary w-100 small-2">
+                <input type="text" class='form-control form-control-sm mb-2' id="input-presence" />
+                <button onclick="getPresence('input-presence')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Get presence
                 </button>
             </div>
         </section>
         <!-- EVENTS -->
         <section data-page="events">
-            <div class="d-flex small-2 text-secondary justify-content-evenly">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
                 <p>Generic Events</p>
             </div>
             <div class="mb-4">
@@ -189,7 +190,7 @@
                 <p class="mb-2 small-1">Send generic event</p>
                 <input id="input-event-num" type="number" placeholder="Event Number" class='form-control form-control-sm mb-2 ps-3' />
                 <input id="input-event-name" type="text" placeholder="Event Name" class='form-control form-control-sm mb-2 ps-3' />
-                <button onclick="sendGenericEvent('input-event-num', 'input-event-name')" class="btn btn-sm btn-outline-primary w-100 small-2">
+                <button onclick="sendGenericEvent('input-event-num', 'input-event-name')" class="btn btn-sm btn-outline-primary w-100 sm">
                     Send Generic Event
                 </button>
             </div>

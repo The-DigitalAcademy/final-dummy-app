@@ -1,7 +1,7 @@
 // Nav and page management
 const navItems = ['profile', 'location', 'msisdn', 'payments', 'events']
 const navContainer = document.getElementById('navContainer')
-let focusedNavItem = 3
+let focusedNavItem = 2
 const pages = document.querySelectorAll('[data-page]')
 
 
@@ -34,7 +34,7 @@ function renderNavItems() {
 
     visibleNavItems.forEach((item, index) => {
         const btn = document.createElement('button')
-        btn.className = `btn btn-sm small-1 fw-light mx-1 ${index == 1 ? 'btn-primary' : 'btn-secondary'}`
+        btn.className = `btn btn-sm fw-light mx-1 ${index == 1 ? 'btn-primary' : 'btn-secondary'}`
         btn.onclick = () => setNavFocus(navItems.indexOf(item))
         btn.innerText = item ? item : ''
         !item ? btn.style.visibility = 'hidden' : ''
@@ -92,4 +92,12 @@ function onPaymentStatusChanged(transactionId, paymentStatus, payError) {
     document.getElementById('transactionId').value = transactionId
     document.getElementById('paymentStatus').value = paymentStatus
     document.getElementById('payError').value = payError
+}
+
+var presence = ''
+function onPresenceChanged(presenceValue) {
+    presence = presenceValue
+}
+function getPresence(elementId) {
+    document.getElementById(elementId).value = presence
 }

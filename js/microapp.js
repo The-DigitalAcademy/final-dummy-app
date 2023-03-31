@@ -59,7 +59,7 @@ function getAllContacts(containerId) {
     document.getElementById(containerId).innerHTML = options
 }
 function getSelfJid(elementId) {
-    let selfJid = Ayoba.getSelfJid();
+    const selfJid = Ayoba.getSelfJid();
     document.getElementById(elementId).value = selfJid
 }
 
@@ -112,25 +112,7 @@ function onLocationChanged(lat, lon) {
     myLocation.locationChangeHandler()
 }
 
-// function onNicknameChanged(nickname) {
-//     console.log(nickname);
-//     alert(nickname)
-// }
-
-// function onAvatarChanged(avatar) {
-//     console.log(avatar);
-//     alert(avatar)
-// }
-
 //PAYMENTS
-var handlePaymentStatusChange = (payload) => { }
-
-/**
- * initiate payment process.
- * @param {{method:string, amount:Number, currency: string, description: string }} payload object containing payment details
- * @param {(payload: {transactionId:string, status: string, error:any}) => {}} successCb callback function for handling success response 
- * @param {(err) => {}} errorCb callback function for handling error response
- */
 function startPayment(methodId, amountId, currencyId, descriptionId) {
     const method = document.getElementById(methodId).value
     const amount = document.getElementById(amountId).value
@@ -140,24 +122,20 @@ function startPayment(methodId, amountId, currencyId, descriptionId) {
     const overlay = document.getElementById('input-overlay').checked
 
     if (!overlay) {
-        Ayoba.startPayment(method, amount, currency, description)
+        try {
+            Ayoba.startPayment(method, amount, currency, description)
+        } catch (error) {
+            alert(`error: ${error}`);
+        }
     } else {
-        Ayoba.startPayment(amount, currency, description)
+        try {
+            Ayoba.startPayment(amount, currency, description)
+        } catch (error) {
+            alert(`error: ${error}`);
+        }
     }
 
 }
-/**
- * Ayoba Hook Function
- * @param {string} transactionId 
- * @param {string} status 
- * @param {*} error 
- * @returns {(payload) => {}}
- */
-function onPaymentStatusChanged(transactionId, status, error) {
-    return handlePaymentStatusChange({ transactionId, status, error })
-}
-
-
 
 // ============================================================= FUNCTIONS ============================================================================
 
@@ -170,17 +148,6 @@ function onNicknameChanged(nickname) {
         inputEle.classList.add("is-valid")
     }
 }
-
-function onPresenceChanged(presence) {
-    const presenceInputs = document.querySelectorAll('[data-ayoba-api="presence"]');
-    for (let i = 0; i < presenceInputs.length; i++) {
-        const inputEle = presenceInputs[i];
-        inputEle.value = presence;
-        inputEle.classList.remove("is-invalid");
-        inputEle.classList.add("is-valid")
-    }
-}
-
 function onAvatarChanged(avatar) {
     const avatarInputs = document.querySelectorAll('[data-ayoba-api="presence"]');
     for (let i = 0; i < avatarInputs.length; i++) {
