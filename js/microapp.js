@@ -13,7 +13,11 @@ function getAyoba() {
     }
 
     if (/android/i.test(userAgent)) {
-        return Android;
+        try {
+            return Android;
+        } catch (error) {
+            return null;
+        }
     }
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
@@ -24,136 +28,130 @@ function getAyoba() {
     return "unknown";
 }
 
-console.log(Ayoba);
-
 if (Ayoba == null || Ayoba == 'unknown') {
-    document.getElementById('myspan').innerText = "Browser"
+    //Browser test Environment
+    Ayoba = new AyobaStub();
 } else {
-    document.getElementById('myspan').innerText = "Ayoba"
+    //Ayoba Environment
 }
 
+console.log(Ayoba);
+
 // MSISDN
-function getMsisdn() {
-    var msisdn = Ayoba.getMsisdn();
-    if (msisdn) {
-        document.getElementById("msisdn").value = msisdn
-        document.getElementById("msisdn").classList.add("is-valid")
-    } else {
-        document.getElementById("msisdn").classList.add("is-invalid")
+function getMsisdn(elementId) {
+    let phoneNumber = Ayoba.getMsisdn();
+    document.getElementById(elementId).value = phoneNumber
+}
+function getContacts(containerId) {
+    const contacts = Ayoba.getContacts();
+    let options = ``
+    JSON.parse(contacts).forEach(contact => {
+        options+= `<option value="${contact.phoneNumber}">${contact.name ? contact.name : contact.phoneNumber}</option>`
+    });
+    document.getElementById(containerId).innerHTML = options
+}
+function getAllContacts(containerId) {
+    const allContacts = Ayoba.getAllContacts();
+    let options = ``
+    JSON.parse(allContacts).forEach(contact => {
+        options+= `<option value="${contact.phoneNumber}">${contact.name ? contact.name : contact.phoneNumber}</option>`
+    });
+    document.getElementById(containerId).innerHTML = options
+}
+function getSelfJid(elementId) {
+    const selfJid = Ayoba.getSelfJid();
+    document.getElementById(elementId).value = selfJid
+}
+
+// LOCATION
+function getCountry(elementId) {
+    let countryCode = Ayoba.getCountry();
+    document.getElementById(elementId).value = countryCode
+}
+
+
+// Profile
+function getLanguage(elementId) {
+    let lang = Ayoba.getLanguage();
+    document.getElementById(elementId).value = lang
+}
+
+// generic events
+function sendGenericEvent(numberInputId, nameInputId) {
+    const number = document.getElementById(numberInputId).value
+    const description = document.getElementById(nameInputId).value
+    Ayoba.sendGenericEvent(number, description)
+}
+
+/**
+ * closes application
+ */
+function closeApp() {
+    try {
+        Ayoba.finish()
+    } catch (err) {
+        console.error(err);
     }
 }
 
-// COUNTRY
-function getCountry() {
-    var countryCode = Ayoba.getCountry();
-    document.getElementById("country").value = countryCode
+//LOCATION
+function UserLocation() {
+    this.lon = '',
+    this.lat = '',
+    this.customHandler = () => {}
+    this.locationChangeHandler = () => {
+        this.customHandler(this.lon, this.lat)
+    }
+
+}
+var myLocation = new UserLocation()
+function onLocationChanged(lat, lon) {
+    console.log(myLocation);
+    myLocation.lon = lon
+    myLocation.lat = lat
+    myLocation.locationChangeHandler()
 }
 
-// CONTACTS
-function getContacts() {
-    var contacts = Ayoba.getContacts();
-    document.getElementById("contacts").value = contacts
-}
+//PAYMENTS
+function startPayment(methodId, amountId, currencyId, descriptionId) {
+    const method = document.getElementById(methodId).value
+    const amount = document.getElementById(amountId).value
+    const currency = document.getElementById(currencyId).value
+    const description = document.getElementById(descriptionId).value
 
-// ALL CONTACTS
-function getAllContacts() {
-    var allContacts = Ayoba.getAllContacts();
-    document.getElementById("allContacts").value = allContacts
-}
+    const overlay = document.getElementById('input-overlay').checked
 
+    if (!overlay) {
+        try {
+            Ayoba.startPayment(method, amount, currency, description)
+        } catch (error) {
+            alert(`error: ${error}`);
+        }
+    } else {
+        try {
+            Ayoba.startPayment(amount, currency, description)
+        } catch (error) {
+            alert(`error: ${error}`);
+        }
+    }
 
-// LANGUAGE
-function getLanguage() {
-    var lang = Ayoba.getLanguage();
-    document.getElementById("lang").value = lang
 }
 
 // ============================================================= FUNCTIONS ============================================================================
 
-
 function onNicknameChanged(nickname) {
-    document.getElementById("name").value = nickname
-    document.getElementById("name").classList.remove("is-invalid");
-    document.getElementById("name").classList.add("is-valid")
+    const nameInputs = document.querySelectorAll('[data-ayoba-api="name"]');
+    for (let i = 0; i < nameInputs.length; i++) {
+        const inputEle = nameInputs[i];
+        inputEle.value = nickname;
+        inputEle.classList.remove("is-invalid");
+        inputEle.classList.add("is-valid")
+    }
 }
-
-function onPresenceChanged(presence) {
-    document.getElementById("presence").value = presence
-    document.getElementById("presence").classList.remove("is-invalid");
-    document.getElementById("presence").classList.add("is-valid")
-}
-
 function onAvatarChanged(avatar) {
-    document.getElementById("myImg").src = avatar;
-}
-
-function onLocationChanged(lat, lon) {
-    document.getElementById("lat").value = lat
-    document.getElementById("lon").value = lon
-    document.getElementById("lat").classList.remove("is-invalid");
-    document.getElementById("lat").classList.add("is-valid")
-    document.getElementById("lon").classList.remove("is-invalid");
-    document.getElementById("lon").classList.add("is-valid")
-}
-
-function getFile() {
-    var responseCode = Ayoba.getFile();
-    console.log(responseCode);
-    return responseCode;
-}
-
-function takephoto() {
-
-    Ayoba.takePicture();
-
-}
-
-function onPictureRetrievedResponse(responseCode, picturePath) {
-    var responseCode = responseCode
-    var picturePath = picturePath
-
-    console.log(picturePath);
-}
-
-function sendGenericEvent() {
-    var evtNumber = parseInt(document.getElementById('evtNumber').value);
-    Ayoba.sendGenericEvent(evtNumber);
-}
-
-function startConversation() {
-    Ayoba.startConversation(document.getElementById("jid").value);
-}
-
-function finish() {
-    Ayoba.finish()
-}
-
-function startPayment() {
-    var pm = document.getElementById('pm').value;
-    var currency = document.getElementById('currency').value;
-    var amount = parseInt(document.getElementById('amount').value);
-    var description = document.getElementById('description').value;
-
-    console.log(pm, amount, currency, description);
-
-    Ayoba.startPayment(pm, amount, currency, description);
-}
-
-function onPaymentStatusChanged(transactionId, status, error) {
-    let res = `Transaction ID:  ${transactionId} <br></br> Status:  ${status} <br></br> Error: ${error} `;
-    document.getElementById("txtPaymentStatusChanged").textContent = res;
-    txtPaymentStatusChanged.text = res;
-}
-
-function submit() {
-    let photo = document.getElementById("files").files[0];
-    let formData = new FormData();
-
-    formData.append("files", photo);
-
-    fetch('https://devstrapi.thedigitalacademy.co.za/api/upload', { method: "POST", body: formData }).then((res) => {
-        console.log(res);
-    }).catch((err) => {
-        console.log(err);
-    });
+    const avatarInputs = document.querySelectorAll('[data-ayoba-api="presence"]');
+    for (let i = 0; i < avatarInputs.length; i++) {
+        const avatarImg = avatarInputs[i];
+        avatarImg.src = avatarImg.tagName.toLowerCase() == 'img' ? avatar : '';
+    }
 }

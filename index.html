@@ -1,333 +1,210 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <title>DA Test Microapp</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous" />
-    </head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body data-new-gr-c-s-check-loaded="14.1097.0" data-gr-ext-installed="">
-    <script>
-        function openTabs(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("defaultOpen").click();
-        });
-        
-    </script>
-
-    <nav class="navbar bg-white sticky-top mb-5">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">
-                <img src="/assets/images/Ayoba.png" alt="Logo" width="30" height="30"
-                    class="d-inline-block align-text-center" />
+<body class="ff-nunito">
+    <header>
+        <div class="p-2 shadow-sm">
+            <a class="navbar-brand fs-5" href="#">
+                <img src="/assets/images/Ayoba.png" alt="Logo" width="30" height="30" />
+                DA Dummy Application
             </a>
+            <button class="btn btn-primary small-1 float-end" onclick="closeApp()">close</button>
         </div>
-    </nav>
+        <nav class="text-center mt-4 mb-3 container">
+            <i class="bi bi-chevron-left" onclick="decrementNavFocus()"></i>
+            <div id="navContainer" class="d-inline"></div>
+            <i class="bi bi-chevron-right" onclick="incrimentNavFocus()"></i>
+        </nav>
+    </header>
+
     <main class="container">
-        <!-- <div class="alert alert-primary justify-content-center" role="alert">
-            Application running on <span id="myspan">Browser</span>
-        </div> -->
-
-        <div class="tab mb-5">
-            <button class="tablinks" onclick="openTabs(event, 'numbers')" id="defaultOpen">MSISDN</button>
-            <button class="tablinks" onclick="openTabs(event, 'location')">LOCATION</button>
-            <button class="tablinks" onclick="openTabs(event, 'media')">MEDIA</button>
-            <button class="tablinks" onclick="openTabs(event, 'events')">EVENTS</button>
-            <button class="tablinks" onclick="openTabs(event, 'payments')">PAYMENTS</button>
-        </div>
-
-        <div class="tabcontent" id="numbers">
-            <div class="mb-5">
-                <label for="contact" class="heading">Contact Name</label>
-                <p class="subheading">Gets the contact name</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="contacts"
-                />
-                <button class="btn btn-light btn-block" onclick="getContacts()">Get Contact Name</button>
+        <!-- MSISDN -->
+        <section data-page="msisdn">
+            <div class="d-flex text-secondary small-1 justify-content-evenly">
+                <p>Ayoba Contacts</p>
+                <p>All Contacts</p>
+                <p>Get MSISDN</p>
+                <p>Get Self JID</p>
             </div>
-
-            <div class="mb-5">
-                <label for="contacts" class="heading">Get All Contacts</label>
-                <p class="subheading">Gets all the contacts</p>
-                <textarea
-                    class="form-control mb-2"
-                    row="2"
-                    id="allContacts"
-                >
-                </textarea>
-                <button class="btn btn-light btn-block" onclick="getAllContacts()">
-                    Get All Contacts
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Ayoba Contacts</label>
+                <p class="mb-2 small-1">Gets user's ayoba registered contacts</p>
+                <select id="value-contacts" class='form-select mb-1' aria-label="Default select example"></select>
+                <button onclick="getContacts('value-contacts')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get Ayoba Contacts
                 </button>
             </div>
-
-            <div class="mb-5">
-                <label for="msisdn" class="heading">Get MSISDN</label>
-                <p class="subheading">Gets the phone number of user</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="msisdn"
-                />
-                <button class="btn btn-light btn-block" onclick="getMsisdn()">Get MSISDN</button>
-            </div>
-
-            <div class="mb-5">
-                <form>
-                    <label for="jid" class="heading">Get Self JID</label>
-                    <p class="subheading">Gets the jid to start conversation</p>
-                    <input
-                        type="text"
-                        class="form-control mb-2"
-                        id="jid"
-                    />
-                    <button type="submit" class="btn btn-light btn-block" onclick="startConversation()">
-                        Start Conversation
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div class="tabcontent" id="location">
-            <div class="mb-5">
-                <label for="country" class="heading">Get Country</label>
-                <p class="subheading">Identify the country code</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="country"
-                />
-                <button class="btn btn-light btn-block" onclick="getCountry()">Get Country Code</button>
-            </div>
-
-            <!-- <div class="mb-5">
-                <label for="location" class="heading">User Location</label>
-                <p class="subheading">Retrieve user location</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="lat,lon"
-                />
-                <button class="btn btn-light btn-block" onclick="onLocationChanged()">Get User Location</button>
-            </div> -->
-
-            <div class="mb-5">
-                <label for="coordinates" class="heading">Co-ordinates</label>
-                <p class="subheading">Get the exact coordinates</p>
-                <input
-                    type="text"
-                    class="form-control mb-2 is-invalid"
-                    id="lat"
-                    placeholder="Latitude:"
-                />
-                <input
-                    type="text"
-                    class="form-control mb-2 is-invalid"
-                    id="lon"
-                    placeholder="Longitude:"
-                />
-                <button class="btn btn-light btn-block" onclick="triggerLocationChanged()">Get Co-ordinates</button>
-            </div>
-        </div>
-
-        
-        <div class="tabcontent" id="media">
-            <div class="mb-5">
-                <label for="file" class="heading">Get File</label>
-                <p class="subheading">Upload a file from storage</p>
-                <input
-                    type="file"
-                    id="files"
-                    name="file"
-                    class="form-control mb-2"
-                    placeholder="Get file"
-                    multiple
-                />
-                <button
-                    type="button"
-                    class="btn btn-light btn-block"
-                    onclick="getFile()"
-                >
-                    Get file
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-light btn-block"
-                    onclick="submit()"
-                >
-                    Submit
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">All Contacts</label>
+                <p class="mb-2 small-1">Gets all user's contacts</p>
+                <select id="value-allContacts" class='form-select mb-1' aria-label="Default select example"></select>
+                <button onclick="getAllContacts('value-allContacts')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get all Contacts
                 </button>
             </div>
-
-            <div class="mb-5">
-                <label for="image" class="heading">Take a Picture</label>
-                <p class="subheading">Open camera</p>
-                <img
-                    type="text"
-                    class="form-control mb-2"
-                    placeholder="Take a photo"
-                    id="picturePath"
-                />
-                <button
-                    class="btn btn-light btn-block"
-                    onclick="takephoto()"
-                >
-                    Take a picture
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">MSISDN</label>
+                <p class="mb-2 small-1">Gets the user's msisdn</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-msisdn" />
+                <button onclick="getMsisdn('input-msisdn')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get MSISDN
                 </button>
             </div>
-        </div>
-
-        <div class="tabcontent" id="events">
-            <div class="mb-5">
-                <label for="event" class="heading">Send Generic Event</label>
-                <p class="subheading">Send a generic event</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="evtNumber"
-                    min="1"
-                    max="4"
-                    placeholder="Event Number"
-                />
-                <button class="btn btn-light btn-block" onclick="sendGenericEvent()">Send Generic Event</button>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Self JID</label>
+                <p class="mb-2 small-1">Gets the self JID</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-jid" />
+                <button onclick="getSelfJid('input-jid')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get Self JID
+                </button>
             </div>
-
-            <div class="mb-5">
-                <label for="presence" class="heading">User Presence</label>
-                <p class="subheading">Retrieve User Presence</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="presence"
-                />
-                <button class="btn btn-light btn-block" onclick="onPresenceChanged()">Get User Presence</button>
+        </section>
+        <!-- LOCATION -->
+        <section data-page="location">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>Country Code</p>
+                <p>GSP Co-ordinates</p>
             </div>
-
-            <div class="mb-5">
-                <label for="profile" class="heading">User Profile</label>
-                <p class="subheading">Retrieve Nickname</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    id="name"
-                />
-                <p class="subheading">Retrieve Avatar</p>
-                <img
-                    height="250"
-                    class="form-control mb-2"
-                    id="myImg"
-                />
-                <button class="btn btn-light btn-block" onclick="onAvatarChanged()">Get User Profile</button>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Country Code</label>
+                <p class="mb-2 small-1">Gets user's country code</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-country" />
+                <button onclick='getCountry("input-country")' class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get Country Code
+                </button>
             </div>
-
-            <div class="mb-5">
-                <label for="language" class="heading">Get Language</label>
-                <p class="subheading">Identify Language</p>
-                <input
-                    type="text"
-                    class="form-control mb-2"
-                    name="language"
-                    id="lang"
-                />
-                <button class="btn btn-light btn-block" onclick="getLanguage()">Get Language</button>
-            </div>
-        </div>
-
-        <div class="tabcontent" id="payments">
-            <form>
-                <div class="mb-5">
-                    <label for="payment" class="heading">Payments</label>
-                    <p class="subheading">Start a payment transaction</p>
-                    <input
-                        type="text"
-                        class="form-control mb-2"
-                        id="pm"
-                        placeholder="Method"
-                    />
-                    <input
-                        type="text"
-                        class="form-control mb-2"
-                        id="amount"
-                        placeholder="Amount"
-                    />
-                    <input
-                        type="text"
-                        class="form-control mb-2"
-                        id="currency"
-                        placeholder="Currency"
-                    />
-                    <input
-                        type="text"
-                        class="form-control mb-2"
-                        id="description"
-                        placeholder="Description"
-                    />
-                    <button 
-                        type="button"
-                        class="btn btn-light btn-block mb-2"
-                        onclick="startPayment()"
-                    >
-                        Get Payment Transaction
-                    </button>
-                    <textarea
-                        type="text"
-                        placeholder="Payment Error:"
-                        id="txtPaymentStatusChanged"
-                        class="form-control mb-2"
-                        rows="3"
-                        style="border: thin dotted gray;"
-                    >
-                    </textarea>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">GPS CO-ordinates</label>
+                <p class="mb-2 small-1">Gets user's live GPS co-ordinates</p>
+                <div type="text" class='form-control form-control-sm mb-2 ps-3'>
+                    <span class="text-muted small-1">Latitudes:</span>
+                    <input type="text" id="input-lat" class="border-0">
                 </div>
-            </form>
-        </div>
-        
-        <div class="mb-2">
-            <button class="btn btn-light btn-block mb-2" onclick="finish()">Close app</button>
-        </div>
-    <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50 mt-2">
-        <div class="container text-center">
-            <small>Copyright &copy; Ayoba</small>
-        </div>
+                <div type="text" class='form-control form-control-sm mb-2 ps-3'>
+                    <span class="text-muted small-1">Longitudes:</span>
+                    <input type="text" id="input-lon" class="border-0">
+                </div>
+                <button onclick="showGpsLocation()" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get GPS Co-ordinates
+                </button>
+            </div>
+        </section>
+        <!-- PAYMENTS -->
+        <section data-page="payments">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>Payments</p>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-0 text-primary-3">Payments</label>
+                <p class="mb-0 small-1">Start a payment transaction</p>
+                <div class="form-check form-switch d-flex align-items-center mb-2">
+                    <input onchange="toggleOverlay(event)" class="form-check-input small me-2" type="checkbox" role="switch"
+                        id="input-overlay">
+                    <label class="form-check-label text-muted small-1 mt-1" for="flexSwitchCheckDefault">Overlay</label>
+                </div>
+                <input id="pay-method" type="text" placeholder="Method" class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-amount" type="number" placeholder="Amount" class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-currency" type="text" placeholder="Currency" class='form-control form-control-sm mb-2 ps-3' />
+                <textarea id="pay-descr" type="text" placeholder="Descrition"
+                    class='form-control form-control-sm mb-2 ps-3'></textarea>
+                <button onclick="startPayment('pay-method', 'pay-amount', 'pay-currency', 'pay-descr')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Start Payment
+                </button>
+            </div>
+            <div type="text" class='form-control border-dotted form-control-sm mb-2 ps-3'>
+                <span class="text-muted small-1">Transaction ID:</span>
+                <input id="transactionId" type="text" class="border-0">
+            </div>
+            <div type="text" class='form-control border-dotted form-control-sm mb-2 ps-3'>
+                <span class="text-muted small-1">Payment Status:</span>
+                <input id="paymentStatus" type="text" class="border-0" />
+            </div>
+            <div type="text" class='form-control border-dotted form-control-sm mb-2 ps-3'>
+                <p class="text-muted small-1">Payement Error:</p>
+                <textarea id="payError" type="text" class="border-0 w-100"></textarea>
+            </div>
+        </section>
+        <!-- PROFILE -->
+        <section data-page="profile">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>Avatar</p>
+                <p>Username</p>
+                <p>Language Code</p>
+                <p>Live Presence</p>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Avatar</label>
+                <p class="mb-2 small-1">Gets user's avatar</p>
+                <img type="text" width="150" className="m-3 rounded-circle" id="input-avatar" alt="avatar" />
+                <button onclick="getAvatar('input-avatar')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    get user Avatar
+                </button>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Username</label>
+                <p class="mb-2 small-1">Gets username</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-username" />
+                <button onclick="getUsername('input-username')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    get username
+                </button>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Language Code</label>
+                <p class="mb-2 small-1">Gets user's language code</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-lang" />
+                <button onclick="getLanguage('input-lang')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get language code
+                </button>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Live Presence</label>
+                <p class="mb-2 small-1">Gets user's live presence. 1 = present , 0 = not present</p>
+                <input type="text" class='form-control form-control-sm mb-2' id="input-presence" />
+                <button onclick="getPresence('input-presence')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Get presence
+                </button>
+            </div>
+        </section>
+        <!-- EVENTS -->
+        <section data-page="events">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>Generic Events</p>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Generic Events</label>
+                <p class="mb-2 small-1">Send generic event</p>
+                <input id="input-event-num" type="number" placeholder="Event Number" class='form-control form-control-sm mb-2 ps-3' />
+                <input id="input-event-name" type="text" placeholder="Event Name" class='form-control form-control-sm mb-2 ps-3' />
+                <button onclick="sendGenericEvent('input-event-num', 'input-event-name')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Send Generic Event
+                </button>
+            </div>
+        </section>
+    </main>
+    <footer>
+
     </footer>
-    <script type="text/javascript" src="js/ayobastub.js"></script>
-    <script type="text/javascript" src="js/microapp.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+    <script src="js/ayobastub.js"></script>
+    <script src="js/microapp.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
