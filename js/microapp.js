@@ -113,7 +113,7 @@ function onLocationChanged(lat, lon) {
 }
 
 //PAYMENTS
-function startPayment(methodId, amountId, currencyId, descriptionId) {
+function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
     const method = document.getElementById(methodId).value
     const amount = document.getElementById(amountId).value
     const currency = document.getElementById(currencyId).value
