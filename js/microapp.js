@@ -122,7 +122,7 @@ function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
     const overlay = document.getElementById('input-overlay').checked
     console.log(overlay, typeof overlay);
 
-    try {
+    // try {
         if (overlay === false) {
             Ayoba.startPayment(method, amount, currency, description)
         } else if (overlay === true) {
@@ -131,9 +131,9 @@ function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
             alert('description: '+ description)
             Ayoba.startPayment(amount, currency, description)
         }
-    } catch (error) {
-        alert(`error: ${error}`);        
-    }
+    // } catch (error) {
+    //     alert(`error: ${error}`);        
+    // }
 
 }
 
