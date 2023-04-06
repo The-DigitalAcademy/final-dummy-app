@@ -126,12 +126,13 @@ function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
         if (overlay === false) {
             Ayoba.startPayment(method, amount, currency, description)
         } else if (overlay === true) {
+            alert(amount, currency, description)
             Ayoba.startPayment(amount, currency, description)
         }
     } catch (error) {
         alert(`error: ${error}`);        
     }
-    
+
 }
 
 // ============================================================= FUNCTIONS ============================================================================
