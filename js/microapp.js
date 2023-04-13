@@ -115,7 +115,7 @@ function onLocationChanged(lat, lon) {
 //PAYMENTS
 function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
     const method = document.getElementById(methodId).value
-    const amount = parseFloat(document.getElementById(amountId).value)
+    const amount = parseFloat(document.getElementById(amountId).value) || null
     const currency = document.getElementById(currencyId).value
     const description = document.getElementById(descriptionId).value
 
