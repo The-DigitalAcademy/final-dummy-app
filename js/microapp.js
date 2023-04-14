@@ -114,10 +114,10 @@ function onLocationChanged(lat, lon) {
 
 //PAYMENTS
 function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
-    const method = document.getElementById(methodId).value
+    const method = document.getElementById(methodId).value || null
     const amount = parseFloat(document.getElementById(amountId).value) || null
-    const currency = document.getElementById(currencyId).value
-    const description = document.getElementById(descriptionId).value
+    const currency = document.getElementById(currencyId).value || null
+    const description = document.getElementById(descriptionId).value || null
 
     const overlay = document.getElementById('input-overlay').checked
     console.log(overlay, typeof overlay);
