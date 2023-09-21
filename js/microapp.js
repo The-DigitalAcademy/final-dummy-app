@@ -114,10 +114,10 @@ function onLocationChanged(lat, lon) {
 
 //PAYMENTS
 function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
-    const method = document.getElementById(methodId).value
-    const amount = parseFloat(document.getElementById(amountId).value)
-    const currency = document.getElementById(currencyId).value
-    const description = document.getElementById(descriptionId).value
+    const method = document.getElementById(methodId).value || null;
+    const amount = parseFloat(document.getElementById(amountId).value) || null;
+    const currency = document.getElementById(currencyId).value;
+    const description = document.getElementById(descriptionId).value;
 
     const overlay = document.getElementById('input-overlay').checked
     console.log(overlay, typeof overlay);
@@ -126,9 +126,6 @@ function startAyobaPayment(methodId, amountId, currencyId, descriptionId) {
         if (overlay === false) {
             Ayoba.startPayment(method, amount, currency, description)
         } else if (overlay === true) {
-            alert('amount: '+ amount)
-            alert('currency: '+ currency)
-            alert('description: '+ description)
             Ayoba.startPayment(amount, currency, description)
         }
     // } catch (error) {
