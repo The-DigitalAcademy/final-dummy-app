@@ -63,3 +63,10 @@ $quicksand: 'Quicksand', sans-serif;
 .max-height-200 {
     max-height: 200px !important;
 }
+
+#mic-audio-container > canvas {
+    // height: 200px;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

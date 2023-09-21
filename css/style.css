@@ -68,4 +68,10 @@
 
 .max-height-200 {
   max-height: 200px !important;
+}
+
+#mic-audio-container > canvas {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }/*# sourceMappingURL=style.css.map */

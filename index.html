@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Ayoba Test MicroApp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,16 +113,20 @@
                 <label class="ff-quicksand form-label small fw-bold mb-0 text-primary-3">Payments</label>
                 <p class="mb-0 small-1">Start a payment transaction</p>
                 <div class="form-check form-switch d-flex align-items-center mb-2">
-                    <input onchange="toggleOverlay(event)" class="form-check-input small me-2" type="checkbox" role="switch"
-                        id="input-overlay">
+                    <input onchange="toggleOverlay(event)" class="form-check-input small me-2" type="checkbox"
+                        role="switch" id="input-overlay">
                     <label class="form-check-label text-muted small-1 mt-1" for="flexSwitchCheckDefault">Overlay</label>
                 </div>
-                <input id="pay-method" type="text" placeholder="Method" class='form-control form-control-sm mb-2 ps-3' />
-                <input id="pay-amount" type="number" placeholder="Amount" class='form-control form-control-sm mb-2 ps-3' />
-                <input id="pay-currency" type="text" placeholder="Currency" class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-method" type="text" placeholder="Method"
+                    class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-amount" type="number" placeholder="Amount"
+                    class='form-control form-control-sm mb-2 ps-3' />
+                <input id="pay-currency" type="text" placeholder="Currency"
+                    class='form-control form-control-sm mb-2 ps-3' />
                 <textarea id="pay-descr" type="text" placeholder="Description"
                     class='form-control form-control-sm mb-2 ps-3'></textarea>
-                <button onclick="startAyobaPayment('pay-method', 'pay-amount', 'pay-currency', 'pay-descr')" class="btn btn-sm btn-outline-primary w-100 sm">
+                <button onclick="startAyobaPayment('pay-method', 'pay-amount', 'pay-currency', 'pay-descr')"
+                    class="btn btn-sm btn-outline-primary w-100 sm">
                     Start Payment
                 </button>
             </div>
@@ -188,9 +192,12 @@
             <div class="mb-4">
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Generic Events</label>
                 <p class="mb-2 small-1">Send generic event</p>
-                <input id="input-event-num" type="number" placeholder="Event Number" class='form-control form-control-sm mb-2 ps-3' />
-                <input id="input-event-name" type="text" placeholder="Event Name" class='form-control form-control-sm mb-2 ps-3' />
-                <button onclick="sendGenericEvent('input-event-num', 'input-event-name')" class="btn btn-sm btn-outline-primary w-100 sm">
+                <input id="input-event-num" type="number" placeholder="Event Number"
+                    class='form-control form-control-sm mb-2 ps-3' />
+                <input id="input-event-name" type="text" placeholder="Event Name"
+                    class='form-control form-control-sm mb-2 ps-3' />
+                <button onclick="sendGenericEvent('input-event-num', 'input-event-name')"
+                    class="btn btn-sm btn-outline-primary w-100 sm">
                     Send Generic Event
                 </button>
             </div>
@@ -206,7 +213,7 @@
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Camera</label>
                 <p class="mb-2 small-1">Take a photo</p>
                 <img class="img-thumbnail mb-1 max-height-200" src="" id="native-camera-preview" alt="">
-                <input id="native-camera-input" hidden type="file" accept="image/*" capture="environment"/>
+                <input id="native-camera-input" hidden type="file" accept="image/*" capture="environment" />
                 <p class="small mb-0" id="native-camera-img-name"></p>
                 <p class="small mb-0" id="native-camera-img-type"></p>
                 <p class="small mb-0" id="native-camera-img-size"></p>
@@ -225,7 +232,9 @@
                         <option value="">Select camera</option>
                     </select>
                 </div>
-                <img id="video-stream-screenshot-image" class="d-none ms-2 mb-2 w-25 start-0 bottom-0 bg-light position-absolute shadow border rounded" alt="">
+                <img id="video-stream-screenshot-image"
+                    class="d-none ms-2 mb-2 w-25 start-0 bottom-0 bg-light position-absolute shadow border rounded"
+                    alt="">
                 <div class="top-0 end-0 position-absolute d-flex mt-2 me-2">
                     <button class="btn play p-0 mx-1  video-stream-control-button" title="Play">
                         <i class="bi bi-play-circle btn text-danger p-0 fs-2 rounded-circle"></i>
@@ -238,8 +247,19 @@
                     </button>
                 </div>
             </div>
-            
-            
+
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Microphone</label>
+                <p class="mb-2 small-1">Read audio from microphone</p>
+                <!-- analyzer container -->
+                <div id="mic-audio-container" class="rounded overflow-hidde"></div>
+                <!-- on/off button -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="mic-input">
+                    <label class="form-check-label" for="mic-input">🎤 on/off</label>
+                  </div>
+            </div>
+
         </section>
     </main>
     <footer>
@@ -252,6 +272,7 @@
     <script src="js/microapp.js"></script>
     <script src="js/script.js"></script>
     <script src="js/deviceVideoStream.js"></script>
+    <script src="js/deviceAudioAnalyser.js" type="module"></script>
 </body>
 
 </html>
