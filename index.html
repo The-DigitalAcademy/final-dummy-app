@@ -195,6 +195,52 @@
                 </button>
             </div>
         </section>
+        <!-- NATIVE -->
+        <section data-page="native">
+            <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>Camera</p>
+                <p>Mic</p>
+                <p>GPS Location</p>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Camera</label>
+                <p class="mb-2 small-1">Take a photo</p>
+                <img class="img-thumbnail mb-1 max-height-200" src="" id="native-camera-preview" alt="">
+                <input id="native-camera-input" hidden type="file" accept="image/*" capture="environment"/>
+                <p class="small mb-0" id="native-camera-img-name"></p>
+                <p class="small mb-0" id="native-camera-img-type"></p>
+                <p class="small mb-0" id="native-camera-img-size"></p>
+                <p class="small mb-0" id="native-camera-info"></p>
+                <p class="small mb-0 text-danger" id="native-camera-errorMessage"></p>
+                <button onclick="clickElement('#native-camera-input')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Take a picture
+                </button>
+            </div>
+            <p class="mb-2 small-1">Live Video Stream</p>
+            <div class="d-flex justify-content-center align-items-center w-100 position-relative mb-4">
+                <video id="video-stream-video" class="rounded w-100 bg-dark bg-gradient" autoplay></video>
+                <canvas id="video-stream-canvas" class="d-none"></canvas>
+                <div class="ms-2 mt-2 top-0 start-0 position-absolute">
+                    <select name="" id="video-stream-device-options" class="custom-select form-select form-select-sm">
+                        <option value="">Select camera</option>
+                    </select>
+                </div>
+                <img id="video-stream-screenshot-image" class="d-none ms-2 mb-2 w-25 start-0 bottom-0 bg-light position-absolute shadow border rounded" alt="">
+                <div class="top-0 end-0 position-absolute d-flex mt-2 me-2">
+                    <button class="btn play p-0 mx-1  video-stream-control-button" title="Play">
+                        <i class="bi bi-play-circle btn text-danger p-0 fs-2 rounded-circle"></i>
+                    </button>
+                    <button class="btn p-0 mx-1 pause d-none video-stream-control-button" title="Pause">
+                        <i class="bi bi-pause-circle btn text-info p-0 fs-2 rounded-circle"></i>
+                    </button>
+                    <button class="btn p-0 mx-1 screenshot d-none video-stream-control-button" title="ScreenShot">
+                        <i class="bi bi-image btn text-success p-0 fs-2 rounded-circle"></i>
+                    </button>
+                </div>
+            </div>
+            
+            
+        </section>
     </main>
     <footer>
 
@@ -205,6 +251,7 @@
     <script src="js/ayobastub.js"></script>
     <script src="js/microapp.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/deviceVideoStream.js"></script>
 </body>
 
 </html>

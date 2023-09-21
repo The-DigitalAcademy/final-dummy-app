@@ -64,4 +64,8 @@
 
 .border-dotted {
   border-style: dotted !important;
+}
+
+.max-height-200 {
+  max-height: 200px !important;
 }/*# sourceMappingURL=style.css.map */

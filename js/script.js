@@ -1,5 +1,5 @@
 // Nav and page management
-const navItems = ['profile', 'location', 'msisdn', 'payments', 'events']
+const navItems = ['profile', 'location', 'msisdn', 'payments', 'events', 'native']
 const navContainer = document.getElementById('navContainer')
 let focusedNavItem = 2
 const pages = document.querySelectorAll('[data-page]')
@@ -100,4 +100,57 @@ function onPresenceChanged(presenceValue) {
 }
 function getPresence(elementId) {
     document.getElementById(elementId).value = presence
+}
+
+function clickElement(selector) {
+    document.querySelector(selector).click()
+}
+
+//NATIVE PAGE : USE NATIVE FEATURES
+//https://www.educative.io/answers/how-to-build-an-image-preview-using-javascript-filereader
+const nativeCameraImgInput = document.querySelector("#native-camera-input");
+let nativeCameraInfo = document.querySelector("#native-camera-info");
+let nativeCameraErrorMessage = document.querySelector("#native-camera-errorMessage");
+const nativeCameraImagePreview = document.querySelector("#native-camera-preview");
+nativeCameraImgInput.addEventListener("change", (e) => {
+    const nativeCameraImgDetails = document.querySelector("#native-camera-input").files[0];
+    if (nativeCameraImgDetails) {
+        nativeCameraInfo.style.display = "block";
+        document.querySelector("#native-camera-img-name").innerText = nativeCameraImgDetails.name;
+        document.querySelector("#native-camera-img-type").innerText = nativeCameraImgDetails.type;
+        document.querySelector("#native-camera-img-size").innerText = nativeCameraImgDetails.size + "bytes";
+        previewImage(nativeCameraImgDetails);
+    } else {
+        nativeCameraImagePreview.src = ""
+        nativeCameraErrorMessage.innerText = "Please select a picture";
+        console.error("Please select a picture");
+        nativeCameraInfo.style.display = "none";
+    }
+
+})
+
+function previewImage(imgD) {
+    const reader = new FileReader();
+    // PREVIEW
+    reader.addEventListener("load", function () {
+        nativeCameraImagePreview.src = reader.result;
+    })
+    // CHECK IF THERE IS SELECTION 
+    if (imgD) {
+        // CHECK IF THE FILE IS AN IMAGE
+        if (imgD.type === "image/jpeg" || imgD.type == "image/jpg" || imgD.type == "image/gif" || imgD.type == "image/png") {
+            nativeCameraErrorMessage.innerText = "";
+
+            // CONVERTS FILE TO BASE 64
+            reader.readAsDataURL(imgD);
+        } else {
+            nativeCameraErrorMessage.innerText = "File type should be an image"
+            nativeCameraImagePreview.src = "";
+        }
+    }
+    // IF NO IMAGE
+    else {
+        nativeCameraImagePreview.src = ""
+        nativeCameraErrorMessage.innerText = "Please select a picture";
+    }
 }

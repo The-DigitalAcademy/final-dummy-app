@@ -1,7 +1,8 @@
 $primary1 : #0067A3;
 $primary2 : #1261A2;
 $primary3 : #003D66;
-$nunito : 'Nunito', sans-serif;
+$nunito : 'Nunito',
+sans-serif;
 $quicksand: 'Quicksand', sans-serif;
 
 .small-1 {
@@ -57,4 +58,8 @@ $quicksand: 'Quicksand', sans-serif;
 }
 .border-dotted {
     border-style: dotted !important;
+}
+
+.max-height-200 {
+    max-height: 200px !important;
 }
