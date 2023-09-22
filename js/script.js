@@ -84,9 +84,9 @@ function getAvatar(elementId) {
 
 // payment
 function toggleOverlay(e) {
-    e.target.checked ? 
-    document.getElementById('pay-method').style.display='none' :
-    document.getElementById('pay-method').style.display='block'
+    e.target.checked ?
+        document.getElementById('pay-method').style.display = 'none' :
+        document.getElementById('pay-method').style.display = 'block'
 }
 function onPaymentStatusChanged(transactionId, paymentStatus, payError) {
     document.getElementById('transactionId').value = transactionId
@@ -107,6 +107,29 @@ function clickElement(selector) {
 }
 
 //NATIVE PAGE : USE NATIVE FEATURES
+//FILE UPLOAD
+const nativeFileUploadInput = document.querySelector("#native-file-upload-input");
+let nativeFileUploadInfo = document.querySelector("#native-file-upload-info");
+let nativeFileUploadErrorMessage = document.querySelector("#native-file-upload-errorMessage");
+const nativeFileUploadPreview = document.querySelector("#native-file-upload-preview");
+nativeFileUploadInput.addEventListener("change", (e) => {
+    const nativeFileUploadgDetails = document.querySelector("#native-file-upload-input").files[0];
+    if (nativeFileUploadgDetails) {
+        nativeFileUploadInfo.style.display = "block";
+        document.querySelector("#native-file-upload-name").innerText = nativeFileUploadgDetails.name;
+        document.querySelector("#native-file-upload-type").innerText = nativeFileUploadgDetails.type;
+        document.querySelector("#native-file-upload-size").innerText = nativeFileUploadgDetails.size + "bytes";
+        previewImage(nativeFileUploadgDetails,
+            [""],
+            nativeFileUploadErrorMessage, nativeFileUploadPreview);
+    } else {
+        nativeFileUploadPreview.src = ""
+        nativeFileUploadErrorMessage.innerText = "Please select a file";
+        nativeFileUploadInfo.style.display = "none";
+    }
+
+})
+//IMAGE UPLOAD
 //https://www.educative.io/answers/how-to-build-an-image-preview-using-javascript-filereader
 const nativeCameraImgInput = document.querySelector("#native-camera-input");
 let nativeCameraInfo = document.querySelector("#native-camera-info");
@@ -119,38 +142,42 @@ nativeCameraImgInput.addEventListener("change", (e) => {
         document.querySelector("#native-camera-img-name").innerText = nativeCameraImgDetails.name;
         document.querySelector("#native-camera-img-type").innerText = nativeCameraImgDetails.type;
         document.querySelector("#native-camera-img-size").innerText = nativeCameraImgDetails.size + "bytes";
-        previewImage(nativeCameraImgDetails);
+        previewImage(nativeCameraImgDetails,
+            ["image/jpeg", "image/jpg", "image/gif", "image/png"],
+            nativeCameraErrorMessage, nativeCameraImagePreview);
     } else {
         nativeCameraImagePreview.src = ""
         nativeCameraErrorMessage.innerText = "Please select a picture";
-        console.error("Please select a picture");
         nativeCameraInfo.style.display = "none";
     }
 
 })
 
-function previewImage(imgD) {
+function previewImage(fileData, typeList, errElement, previewElement) {
     const reader = new FileReader();
     // PREVIEW
     reader.addEventListener("load", function () {
-        nativeCameraImagePreview.src = reader.result;
+        if (reader.result.includes('image')) {
+            previewElement.src = reader.result;
+        }
     })
+
     // CHECK IF THERE IS SELECTION 
-    if (imgD) {
+    if (fileData) {
         // CHECK IF THE FILE IS AN IMAGE
-        if (imgD.type === "image/jpeg" || imgD.type == "image/jpg" || imgD.type == "image/gif" || imgD.type == "image/png") {
-            nativeCameraErrorMessage.innerText = "";
+        if (typeList.some(val => fileData.type)) {
+            errElement.innerText = "";
 
             // CONVERTS FILE TO BASE 64
-            reader.readAsDataURL(imgD);
+            reader.readAsDataURL(fileData);
         } else {
-            nativeCameraErrorMessage.innerText = "File type should be an image"
-            nativeCameraImagePreview.src = "";
+            errElement.innerText = "File type should be an image"
+            previewElement.src = "";
         }
     }
     // IF NO IMAGE
     else {
-        nativeCameraImagePreview.src = ""
-        nativeCameraErrorMessage.innerText = "Please select a picture";
+        previewElement.src = ""
+        errElement.innerText = "Please select a picture";
     }
 }

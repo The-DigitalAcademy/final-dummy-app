@@ -205,9 +205,24 @@
         <!-- NATIVE -->
         <section data-page="native">
             <div class="d-flex small-1 text-secondary justify-content-evenly">
+                <p>File upload</p>
                 <p>Camera</p>
                 <p>Mic</p>
                 <p>GPS Location</p>
+            </div>
+            <div class="mb-4">
+                <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">File Upload</label>
+                <p class="mb-2 small-1">Upload a file</p>
+                <img class="img-thumbnail mb-1 max-height-200" src="" id="native-file-upload-preview" alt="">
+                <input id="native-file-upload-input" hidden type="file" />
+                <p class="small mb-0" id="native-file-upload-name"></p>
+                <p class="small mb-0" id="native-file-upload-type"></p>
+                <p class="small mb-0" id="native-file-upload-size"></p>
+                <p class="small mb-0" id="native-file-upload-info"></p>
+                <p class="small mb-0 text-danger" id="native-file-upload-errorMessage"></p>
+                <button onclick="clickElement('#native-file-upload-input')" class="btn btn-sm btn-outline-primary w-100 sm">
+                    Upload File
+                </button>
             </div>
             <div class="mb-4">
                 <label class="ff-quicksand form-label small fw-bold mb-1 text-primary-3">Camera</label>
