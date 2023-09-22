@@ -5,6 +5,7 @@ const video = document.querySelector('#video-stream-video');
 const canvas = document.querySelector('#video-stream-canvas');
 const screenshotImage = document.querySelector('#video-stream-screenshot-image');
 const buttons = [...document.querySelectorAll('.video-stream-control-button')];
+const videoErrorMessage = document.querySelector("#native-device-video-error")
 let streamStarted = false;
 
 const [play, pause, screenshot] = buttons;
@@ -50,6 +51,8 @@ play.onclick = () => {
       }
     };
     startStream(updatedConstraints);
+  } else {
+    videoErrorMessage.innerHTML = 'video stream access denied by user';
   }
 };
 
@@ -71,7 +74,7 @@ pause.onclick = pauseStream;
 screenshot.onclick = doScreenshot;
 
 const startStream = async (constraints) => {
-  const stream = await navigator.mediaDevices.getUserMedia(constraints);
+  const stream = await navigator.mediaDevices.getUserMedia(constraints)
   handleStream(stream);
 };
 

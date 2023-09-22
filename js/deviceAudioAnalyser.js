@@ -7,6 +7,8 @@
 // load module from Skypack CDN
 import AudioMotionAnalyzer from 'https://cdn.skypack.dev/audiomotion-analyzer?min';
 
+const micErrorMessage = document.querySelector("#native-device-mic-error");
+
 // global variable to save microphone stream
 let micStream;
 
@@ -36,11 +38,11 @@ micButton.addEventListener( 'change', () => {
         audioMotion.volume = 0;
       })
       .catch( err => {
-        alert('Microphone access denied by user');
+        micErrorMessage.innerHTML = 'Microphone access denied by user';
       });
     }
     else {
-      alert('User mediaDevices not available');
+      micErrorMessage.innerHTML = 'User mediaDevices not available';
     }
   }
   else {
