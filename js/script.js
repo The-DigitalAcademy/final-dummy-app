@@ -51,8 +51,8 @@ renderNavItems()
 // location hook
 const locationLat = document.getElementById('input-lat')
 const locationLon = document.getElementById('input-lon')
-locationLat.style.visibility = 'hidden'
-locationLon.style.visibility = 'hidden'
+// locationLat.style.visibility = 'hidden'
+// locationLon.style.visibility = 'hidden'
 
 function showGpsLocation() {
     locationLat.style.visibility = 'visible'
@@ -68,18 +68,29 @@ function onLocationChanged(lon, lat) {
 var username = ''
 function onNicknameChanged(nickname) {
     username = nickname
+    getUsername('input-username');
 }
 function getUsername(elementId) {
-    document.getElementById(elementId).value = username
+    try {
+        document.getElementById(elementId).value = username
+    } catch (error) {
+        console.log(error);
+    }
+
 }
 
 // avatar hook
 var avatarUrl = ''
 function onAvatarChanged(avatar) {
     avatarUrl = avatar
+    getAvatar('input-avatar');
 }
 function getAvatar(elementId) {
-    document.getElementById(elementId).src = avatarUrl
+    try {
+        document.getElementById(elementId).src = avatarUrl
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 // payment
@@ -97,9 +108,14 @@ function onPaymentStatusChanged(transactionId, paymentStatus, payError) {
 var presence = ''
 function onPresenceChanged(presenceValue) {
     presence = presenceValue
+    getPresence('input-presence')
 }
 function getPresence(elementId) {
-    document.getElementById(elementId).value = presence
+    try {
+        document.getElementById(elementId).value = presence
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 function clickElement(selector) {
