@@ -199,9 +199,10 @@ function previewImage(fileData, typeList, errElement, previewElement) {
 }
 
 // ORIENTATION DETECTION
-// Show the prompt if the device is initially in portrait mode
 if (window.orientation === 0 || window.orientation === 180) {
     document.getElementById('orientation-btn').innerText = "Portrait Mode"
+} else {
+    document.getElementById('orientation-btn').innerText = "Landscape Mode";
 }
 
 // Listen for orientation changes
