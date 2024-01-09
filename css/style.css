@@ -74,4 +74,10 @@
   width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+
+#orientation-btn {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
 }/*# sourceMappingURL=style.css.map */

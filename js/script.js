@@ -197,3 +197,18 @@ function previewImage(fileData, typeList, errElement, previewElement) {
         errElement.innerText = "Please select a picture";
     }
 }
+
+// ORIENTATION DETECTION
+// Show the prompt if the device is initially in portrait mode
+if (window.orientation === 0 || window.orientation === 180) {
+    document.getElementById('orientation-btn').innerText = "Portrait Mode"
+}
+
+// Listen for orientation changes
+window.addEventListener('orientationchange', function () {
+    if (window.orientation === 0 || window.orientation === 180) {
+        document.getElementById('orientation-btn').innerText = "Portrait Mode";
+    } else {
+        document.getElementById('orientation-btn').innerText = "Landscape Mode";
+    }
+});
